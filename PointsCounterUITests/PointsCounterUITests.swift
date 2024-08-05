@@ -26,7 +26,29 @@ final class PointsCounterUITests: XCTestCase {
         // UI tests must launch the application that they test.
         let app = XCUIApplication()
         app.launch()
-
+        
+        let title  = app.staticTexts["Gracze"]
+        XCTAssertTrue(title.exists)
+        
+        let sidebarCollectionView = app.collectionViews["Sidebar"]
+        let incrementButton = sidebarCollectionView/*@START_MENU_TOKEN@*/.steppers["0 pkt"].buttons["Increment"]/*[[".cells.steppers[\"0 pkt\"]",".buttons[\"0 pkt, Increment\"]",".buttons[\"Increment\"]",".steppers[\"0 pkt\"]"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/
+        incrementButton.tap()
+        sidebarCollectionView/*@START_MENU_TOKEN@*/.steppers["1 pkt"].buttons["Decrement"]/*[[".cells.steppers[\"1 pkt\"]",".buttons[\"1 pkt, Decrement\"]",".buttons[\"Decrement\"]",".steppers[\"1 pkt\"]"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/.tap()
+        incrementButton.tap()
+        
+        let graczeNavigationBar = app.navigationBars["Gracze"]
+        graczeNavigationBar/*@START_MENU_TOKEN@*/.buttons["Reset"]/*[[".otherElements[\"Reset\"].buttons[\"Reset\"]",".buttons[\"Reset\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        graczeNavigationBar/*@START_MENU_TOKEN@*/.buttons["Edit"]/*[[".otherElements[\"Edit\"].buttons[\"Edit\"]",".buttons[\"Edit\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        sidebarCollectionView.cells.otherElements.containing(.image, identifier:"minus.circle.fill").element.tap()
+        sidebarCollectionView.buttons["Delete"].tap()
+        graczeNavigationBar/*@START_MENU_TOKEN@*/.buttons["Done"]/*[[".otherElements[\"Done\"].buttons[\"Done\"]",".buttons[\"Done\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        graczeNavigationBar/*@START_MENU_TOKEN@*/.buttons["Add People/Follow"]/*[[".otherElements[\"Add People\/Follow\"].buttons[\"Add People\/Follow\"]",".buttons[\"Add People\/Follow\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let podajImiGraczaTextField = app.textFields["Podaj imię gracza..."]
+        podajImiGraczaTextField.tap()
+        podajImiGraczaTextField.tap()
+        app.buttons["Dodaj"].tap()
+        
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
